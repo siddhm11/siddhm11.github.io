@@ -1,536 +1,142 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siddh Mehta - Software Developer | AI & Data Science</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        'primary': '#0D1117',
-                        'secondary': '#161B22',
-                        'accent': '#58A6FF',
-                        'light-text': '#C9D1D9',
-                        'dark-text': '#8B949E',
-                        'border-color': '#30363D'
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #161B22;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #30363D;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #58A6FF;
-        }
-        
-        /* Active nav link style */
-        .nav-link-active {
-            color: #58A6FF;
-            font-weight: 600;
-        }
-        
-        /* Tech logo hover effect */
-        .tech-logo {
-            transition: transform 0.3s ease;
-        }
-        .tech-logo:hover {
-            transform: scale(1.1);
-        }
-        
-        /* Project card hover effect */
-        .project-card {
-            transition: all 0.3s ease;
-        }
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(88, 166, 255, 0.1), 0 4px 6px -2px rgba(88, 166, 255, 0.05);
-        }
-
-        /* Blinking cursor for typing animation */
-        .blinking-cursor {
-            color: #58A6FF;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            from, to { color: transparent; }
-            50% { color: #58A6FF; }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Siddh Mehta — AI / ML Engineer</title>
+<meta name="description" content="Siddh Mehta, AI/ML engineer at Airbus. Solo builder of ResearchIT and co-builder of Prompt Memory. Selected work, engineering decisions, and life beyond the screen.">
+<link rel="canonical" href="https://siddhm11.github.io/">
+<meta name="theme-color" content="#f8f7f3">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Siddh Mehta — AI / ML Engineer">
+<meta property="og:description" content="Search systems, useful AI tools, and the decisions behind them.">
+<meta property="og:image" content="https://siddhm11.github.io/assets/social-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<script>
+// Apply the saved preference before paint. Storage is optional (including file previews).
+(function () {
+  var preference = 'system';
+  try { preference = localStorage.getItem('siddh-theme') || 'system'; } catch (_) {}
+  if (['light', 'dark', 'system'].indexOf(preference) < 0) preference = 'system';
+  document.documentElement.dataset.themePreference = preference;
+  document.documentElement.dataset.theme = preference === 'system'
+    ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : preference;
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;650;700&family=DM+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
 </head>
-<body class="bg-primary text-light-text font-sans antialiased">
-
-    <!-- Header & Navigation -->
-    <header class="bg-secondary/80 backdrop-blur-sm sticky top-0 z-50 border-b border-border-color">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#home" class="text-xl font-bold tracking-tight text-white hover:text-accent transition-colors duration-300">Siddh Mehta</a>
-            <nav class="hidden md:flex space-x-8">
-                <a href="#about" class="nav-link hover:text-accent transition-colors duration-300">About</a>
-                <a href="#skills" class="nav-link hover:text-accent transition-colors duration-300">Skills</a>
-                <a href="#experience" class="nav-link hover:text-accent transition-colors duration-300">Experience</a>
-                <a href="#projects" class="nav-link hover:text-accent transition-colors duration-300">Projects</a>
-                <a href="#contact" class="nav-link hover:text-accent transition-colors duration-300">Contact</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#about" class="block py-2 hover:text-accent">About</a>
-            <a href="#skills" class="block py-2 hover:text-accent">Skills</a>
-            <a href="#experience" class="block py-2 hover:text-accent">Experience</a>
-            <a href="#projects" class="block py-2 hover:text-accent">Projects</a>
-            <a href="#contact" class="block py-2 hover:text-accent">Contact</a>
-        </div>
-    </header>
-
-    <main class="container mx-auto px-6 py-12 md:py-20">
-        <!-- HERO SECTION - UPDATED with Image -->
-        <section id="home" class="min-h-[calc(100vh-80px)] flex items-center">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center w-full">
-                <!-- Text Content -->
-                <div class="md:col-span-2 animate-fade-in-up">
-                    <span class="text-accent font-semibold">Hi, my name is</span>
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mt-2">Siddh Mehta.</h1>
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark-text mt-2 h-[4rem] md:h-[5rem]">
-                        <span id="dynamic-text" class="text-light-text"></span><span class="blinking-cursor">|</span>
-                    </h2>
-                    <p class="mt-6 max-w-2xl text-lg text-light-text">
-                        I'm a Computer Science student learning AI, Data Science, and high-performance software engineering. I have a passion for building intelligent systems, from automated ML forecasting to advanced research tools.
-                    </p>
-                    <div class="mt-8 flex items-center space-x-4">
-                        <a href="#projects" class="bg-accent text-primary font-bold py-3 px-6 rounded-lg hover:bg-opacity-80 transition-all duration-300">
-                            View My Work
-                        </a>
-                        <a href="Copy of Siddh's resume 3nd year-3.pdf" target="_blank" class="border border-accent text-accent font-bold py-3 px-6 rounded-lg hover:bg-accent hover:text-primary transition-all duration-300">
-                            View Resume
-                        </a>
-                        <div class="flex space-x-4">
-                            <a href="https://github.com/siddhm11" target="_blank" class="text-dark-text hover:text-accent transition-colors duration-300" aria-label="GitHub Profile">
-                               <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                            </a>
-                            <a href="https://www.linkedin.com/in/siddh-mehta-610a0924b/" target="_blank" class="text-dark-text hover:text-accent transition-colors duration-300" aria-label="LinkedIn Profile">
-                                <svg class="w-7 h-7" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Image -->
-                <div class="hidden md:flex justify-center items-center animate-fade-in-up">
-                    <!-- PHOTO PLACEHOLDER: Replace src with the path to your photo -->
-                    <img src="./assets/pfp.png" alt="A photo of me" class="rounded-full w-80 h-80 object-cover border-4 border-border-color shadow-lg">
-                </div>
-            </div>
-        </section>
-
-        <!-- ABOUT SECTION - REDESIGNED with Image -->
-        <section id="about" class="py-20 md:py-32">
-            <h2 class="text-3xl font-bold text-white text-center">About Me</h2>
-            <div class="mt-12 max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
-                <!-- Left Column: Text -->
-                <div class="space-y-4">
-                    <p class="text-light-text leading-relaxed text-lg">
-                        As a Computer Science student with a deep specialization in AI-driven solutions, Data Science, and scalable software engineering, I thrive on tackling complex challenges. I have hands-on experience building high-performance backend systems, developing and deploying machine learning models, and creating innovative research automation tools.
-                    </p>
-                    <p class="text-light-text leading-relaxed text-lg">
-                        My passion lies in leveraging cutting-edge technologies like AI, NLP, and Large Language Models (LLMs) to enhance information retrieval, automate complex workflows, and solve real-world problems. I am actively seeking a Data Science Internship where I can contribute to ambitious projects and continue to grow my skills in a data-driven environment.
-                    </p>
-                    <p class="text-light-text leading-relaxed text-lg">
-                        Beyond the code, I'm a former international cricketer, a journey that taught me discipline, teamwork, and strategic thinking—skills I apply to every technical challenge I face.
-                    </p>
-                </div>
-                <!-- Right Column: Image and Education -->
-                <div class="space-y-8">
-                    <!-- PHOTO PLACEHOLDER: Replace src with a photo of you (e.g., cricket, coding) -->
-                    <img src="./assets/cric.png" alt="Siddh playing cricket" class="rounded-xl w-full h-auto object-cover border-2 border-border-color shadow-md hover:shadow-lg transition-shadow duration-300">
-                    
-                    <div class="bg-secondary border border-border-color rounded-xl p-6">
-                        <h3 class="font-bold text-white text-lg mb-4">Education</h3>
-                        <div class="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-2 before:w-0.5 before:h-full before:bg-border-color">
-                            <div class="mb-6">
-                                <div class="absolute w-4 h-4 bg-accent rounded-full -left-2 top-2 border-4 border-secondary"></div>
-                                <p class="font-semibold text-white">Vellore Institute of Technology</p>
-                                <p class="text-dark-text text-sm">B.Tech, Computer Science & Engineering, Data Science</p>
-                                <p class="text-dark-text text-sm">Expected May 2026 | 8.96 CGPA</p>
-                            </div>
-                            <div>
-                                <div class="absolute w-4 h-4 bg-accent rounded-full -left-2 top-[108px] border-4 border-secondary"></div>
-                                <p class="font-semibold text-white">Indian School Al Wadi Al Kabir</p>
-                                <p class="text-dark-text text-sm">AISSCE (CBSE XII PCM) Computer Science</p>
-                                <p class="text-dark-text text-sm">Graduated May 2022 | 86.80%</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- (Rest of the sections: Skills, Experience, etc. remain the same) -->
-        
-        <!-- Skills & Tech Stack Section -->
-        <section id="skills" class="py-20 md:py-32">
-            <h2 class="text-3xl font-bold text-white text-center">My Tech Stack & Skills</h2>
-            <div class="mt-12 max-w-4xl mx-auto">
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
-                    <div class="flex flex-col items-center tech-logo">
-                        <img src="https://www.vectorlogo.zone/logos/python/python-icon.svg" alt="Python" class="h-16 w-16">
-                        <p class="mt-2 text-light-text">Python</p>
-                    </div>
-                    <div class="flex flex-col items-center tech-logo">
-                        <img src="https://www.vectorlogo.zone/logos/java/java-icon.svg" alt="Java" class="h-16 w-16">
-                        <p class="mt-2 text-light-text">Java</p>
-                    </div>
-                    <div class="flex flex-col items-center tech-logo">
-                        <img src="https://www.vectorlogo.zone/logos/javascript/javascript-icon.svg" alt="JavaScript" class="h-16 w-16">
-                        <p class="mt-2 text-light-text">JavaScript</p>
-                    </div>
-                     <div class="flex flex-col items-center tech-logo">
-                        <img src="https://www.vectorlogo.zone/logos/springio/springio-icon.svg" alt="Spring Boot" class="h-16 w-16">
-                        <p class="mt-2 text-light-text">Spring Boot</p>
-                    </div>
-                    <div class="flex flex-col items-center tech-logo">
-                        <img src="https://www.vectorlogo.zone/logos/tensorflow/tensorflow-icon.svg" alt="TensorFlow" class="h-16 w-16">
-                        <p class="mt-2 text-light-text">TensorFlow</p>
-                    </div>
-                    <div class="flex flex-col items-center tech-logo">
-                        <img src="https://www.vectorlogo.zone/logos/postgresql/postgresql-icon.svg" alt="PostgreSQL" class="h-16 w-16">
-                        <p class="mt-2 text-light-text">PostgreSQL</p>
-                    </div>
-                     <div class="flex flex-col items-center tech-logo">
-                        <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="GCP" class="h-16 w-16">
-                        <p class="mt-2 text-light-text">GCP</p>
-                    </div>
-                    <div class="flex flex-col items-center tech-logo">
-                        <img src="https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg" alt="React" class="h-16 w-16">
-                        <p class="mt-2 text-light-text">React</p>
-                    </div>
-                </div>
-                 <div class="mt-16 bg-secondary p-6 rounded-lg border border-border-color">
-                        <h3 class="font-bold text-white text-lg mb-4 text-center">Other Skills</h3>
-                        <div class="flex flex-wrap gap-3 justify-center">
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Data Science</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">AI/ML</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Deep Learning</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">NLP</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">LangGraph</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Forecasting</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Data Analysis</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Node.js</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">C++</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">C</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">HTML/CSS</span>
-                            <span class="bg-border-color/50 text-light-text font-medium px-3 py-1 rounded-full">Data Structures</span>
-                        </div>
-                    </div>
-            </div>
-        </section>
-
-        <!-- Experience Section -->
-        <section id="experience" class="py-20 md:py-32">
-            <h2 class="text-3xl font-bold text-white text-center">Professional Experience</h2>
-            <div class="mt-12 max-w-4xl mx-auto space-y-8">
-                <div class="bg-secondary p-6 rounded-lg border border-border-color hover:border-accent transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-bold text-accent">AI/ML Intern</h3>
-                            <p class="text-white font-semibold">JIO FYND</p>
-                        </div>
-                        <p class="text-dark-text text-sm">May 2025 - Present</p>
-                    </div>
-                    <p class="mt-2 font-semibold text-light-text">Agentic AI System for Automated ML Forecasting</p>
-                    <ul class="mt-4 list-disc list-inside text-light-text space-y-2">
-                        <li>Built an Agentic AI framework to automate ML workflows on tabular data using LLM-powered agents.</li>
-                        <li>Designed dual specialist agents for classification/regression, automating feature selection, model tuning, and feature engineering.</li>
-                        <li>Developed comparative analysis pipelines to recommend optimal modeling approaches and deliver actionable insights.</li>
-                    </ul>
-                </div>
-
-                <div class="bg-secondary p-6 rounded-lg border border-border-color hover:border-accent transition-all duration-300 transform hover:-translate-y-1">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-xl font-bold text-accent">DS Intern / SWE Intern</h3>
-                            <p class="text-white font-semibold">Acheron Software</p>
-                        </div>
-                        <p class="text-dark-text text-sm">Jun 2024 - Jan 2025</p>
-                    </div>
-                    <p class="mt-2 font-semibold text-light-text">Digital Asset Management & AI-Powered Analytics</p>
-                    <ul class="mt-4 list-disc list-inside text-light-text space-y-2">
-                        <li>Developed a high-performance Digital Asset Management (DAM) solution using Java Spring Boot, increasing transfer rates by 85%.</li>
-                        <li>Built a data analytics platform leveraging LLMs for predictive insights and integrated ML models for automated reporting.</li>
-                        <li>Designed efficient SQL databases, enhancing data retrieval and management for the analytics platform.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Projects Section -->
-        <section id="projects" class="py-20 md:py-32">
-            <h2 class="text-3xl font-bold text-white text-center">Featured Projects</h2>
-            <div class="mt-12 grid md:grid-cols-1 lg:grid-cols-2 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-secondary border border-border-color rounded-lg p-6 flex flex-col">
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-bold text-accent">ResearchIT - Smart Research Recommender</h3>
-                        <p class="mt-3 text-light-text">An AI-powered system that recommends relevant research papers from the 2.7 million+ arXiv dataset, improving search efficiency by 70%. Features LLM-powered summarization to make complex topics more accessible.</p>
-                    </div>
-                    <div class="mt-4">
-                        <div class="flex flex-wrap gap-2 text-sm mb-4">
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Python</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">FastAPI</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Streamlit</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Vector DB</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">LLMs</span>
-                        </div>
-                        <a href="https://github.com/siddhm11/ResearchIT" target="_blank" class="text-dark-text hover:text-accent font-semibold transition-colors duration-300 flex items-center">
-                            View on GitHub <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card bg-secondary border border-border-color rounded-lg p-6 flex flex-col">
-                    <div class="flex-grow">
-                        <h3 class="text-xl font-bold text-accent">Agentic AI for ML Forecasting</h3>
-                        <p class="mt-3 text-light-text">An impetus project at Jio, this Agentic AI framework automates the entire machine learning workflow for tabular data. It uses LLM agents for smart feature selection, model recommendation, and hyperparameter tuning.</p>
-                    </div>
-                    <div class="mt-4">
-                        <div class="flex flex-wrap gap-2 text-sm mb-4">
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Python</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Scikit-learn</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">LangGraph</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">LLM APIs</span>
-                        </div>
-                        <a href="https://github.com/siddhm11" target="_blank" class="text-dark-text hover:text-accent font-semibold transition-colors duration-300 flex items-center">
-                            View on GitHub <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card bg-secondary border border-border-color rounded-lg p-6 flex flex-col lg:col-span-2">
-                     <div class="flex-grow">
-                        <h3 class="text-xl font-bold text-accent">Digital Asset Management (DAM) Solution</h3>
-                        <p class="mt-3 text-light-text">A high-performance backend solution built for Acheron Software to enable efficient data organization, retrieval, and sharing. The system optimized secure data transfer protocols, increasing completion rates by 85% and speed by 60%.</p>
-                    </div>
-                    <div class="mt-4">
-                        <div class="flex flex-wrap gap-2 text-sm mb-4">
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Java</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">Spring Boot</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">REST API</span>
-                            <span class="bg-border-color/50 text-accent font-mono px-2 py-1 rounded">SQL</span>
-                        </div>
-                        <a href="https://github.com/siddhm11" target="_blank" class="text-dark-text hover:text-accent font-semibold transition-colors duration-300 flex items-center">
-                            View on GitHub <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 md:py-32 text-center">
-            <div class="animate-fade-in-up">
-                <h2 class="text-3xl font-bold text-white">Get In Touch</h2>
-                <p class="mt-4 max-w-xl mx-auto text-light-text">
-                    I'm currently seeking new opportunities for a Data Science Internship. My inbox is always open, whether you have a question or just want to say hi, I'll try my best to get back to you!
-                </p>
-                <div class="mt-8">
-                    <a href="mailto:mehtasiddh011@gmail.com" class="bg-accent text-primary font-bold py-3 px-8 rounded-lg hover:bg-opacity-80 transition-all duration-300 text-lg">
-                        Say Hello
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-secondary border-t border-border-color">
-        <div class="container mx-auto px-6 py-6 text-center text-dark-text">
-            <p>&copy; 2024 Siddh Mehta. Built with passion and code.</p>
-            <div class="mt-4 flex justify-center space-x-4">
-                <a href="https://github.com/siddhm11" target="_blank" class="hover:text-accent transition-colors duration-300">GitHub</a>
-                <a href="https://www.linkedin.com/in/siddh-mehta-610a0924b/" target="_blank" class="hover:text-accent transition-colors duration-300">LinkedIn</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // (The JavaScript for menu, scrolling, and typing animation is unchanged)
-        // ... paste the same <script> content from the previous answer here ...
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Smooth scrolling and active nav link highlighting
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            // Close mobile menu on link click
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                     mobileMenu.classList.add('hidden');
-                });
-            });
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.4
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('nav-link-active');
-                            if (link.getAttribute('href').substring(1) === entry.target.id) {
-                                link.classList.add('nav-link-active');
-                            }
-                        });
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => {
-                observer.observe(section);
-            });
-            
-            // Intersection observer for animations
-            const animatedElements = document.querySelectorAll('.animate-fade-in-up');
-            const animationObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('fade-in-up');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            animatedElements.forEach(el => {
-                animationObserver.observe(el);
-            });
-            
-            // DYNAMIC TYPING TEXT ANIMATION
-            const dynamicText = document.getElementById('dynamic-text');
-            const phrases = [
-                "I study CS with Data Science at VIT.",
-                "I am a former international cricketer for Oman.",
-                "SPECIAL_JAVA_PYTHON"
-            ];
-            let phraseIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            const typingSpeed = 120;
-            const erasingSpeed = 60;
-            const delayBetweenPhrases = 2000;
-            let javaPhase = 0; 
-
-            function type() {
-                if (phrases[phraseIndex] === "SPECIAL_JAVA_PYTHON") {
-                    handleJavaPythonTransition();
-                    return;
-                }
-                const currentPhrase = phrases[phraseIndex];
-                if (isDeleting) {
-                    dynamicText.textContent = currentPhrase.substring(0, charIndex - 1);
-                    charIndex--;
-                } else {
-                    dynamicText.textContent = currentPhrase.substring(0, charIndex + 1);
-                    charIndex++;
-                }
-
-                if (!isDeleting && charIndex === currentPhrase.length) {
-                    isDeleting = true;
-                    setTimeout(type, delayBetweenPhrases);
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                    setTimeout(type, typingSpeed);
-                } else {
-                    setTimeout(type, isDeleting ? erasingSpeed : typingSpeed);
-                }
-            }
-
-            function handleJavaPythonTransition() {
-                if (javaPhase === 0) {
-                    const javaText = "I code in Java";
-                    if (charIndex < javaText.length) {
-                        dynamicText.textContent = javaText.substring(0, charIndex + 1);
-                        charIndex++;
-                        setTimeout(type, typingSpeed);
-                    } else {
-                        javaPhase = 1;
-                        setTimeout(type, delayBetweenPhrases);
-                    }
-                } else if (javaPhase === 1) {
-                    const targetText = "I code in";
-                    if (dynamicText.textContent.length > targetText.length) {
-                        dynamicText.textContent = dynamicText.textContent.slice(0, -1);
-                        charIndex--;
-                        setTimeout(type, erasingSpeed);
-                    } else {
-                        javaPhase = 2;
-                        charIndex = targetText.length;
-                        setTimeout(type, typingSpeed);
-                    }
-                } else if (javaPhase === 2) {
-                    const pythonText = "I code in Python and JS";
-                    if (charIndex < pythonText.length) {
-                        dynamicText.textContent = pythonText.substring(0, charIndex + 1);
-                        charIndex++;
-                        setTimeout(type, typingSpeed);
-                    } else {
-                        javaPhase = 3;
-                        setTimeout(type, delayBetweenPhrases);
-                    }
-                } else if (javaPhase === 3) {
-                    if (charIndex > 0) {
-                        dynamicText.textContent = dynamicText.textContent.slice(0, -1);
-                        charIndex--;
-                        setTimeout(type, erasingSpeed);
-                    } else {
-                        javaPhase = 0;
-                        phraseIndex = (phraseIndex + 1) % phrases.length;
-                        setTimeout(type, typingSpeed);
-                    }
-                }
-            }
-            type();
-        });
-    </script>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="site-shell">
+<aside class="sidebar" aria-label="About Siddh and navigation">
+ <a class="identity" href="#hello"><img src="assets/portrait.webp" width="64" height="64" alt="Siddh Mehta"><span><strong>Siddh Mehta<span class="name-dot">.</span></strong><small>AI / ML Engineer</small></span></a>
+ <p class="sidebar-intro">Search, recommendations,<br>and tools for working with AI.</p>
+ <span class="location"><i aria-hidden="true"></i>Bengaluru, India</span>
+ <nav class="chapter-nav" aria-label="Portfolio chapters">
+  <a href="#hello" class="current" aria-current="location"><span>01</span>About<span class="nav-arrow" aria-hidden="true">↗</span></a>
+  <a href="#work"><span>02</span>Selected work<span class="nav-arrow" aria-hidden="true">↗</span></a>
+  <a href="#journey"><span>03</span>Experience<span class="nav-arrow" aria-hidden="true">↗</span></a>
+  <a href="#offscreen"><span>04</span>Offscreen<span class="nav-arrow" aria-hidden="true">↗</span></a>
+  <a href="#contact"><span>05</span>Contact<span class="nav-arrow" aria-hidden="true">↗</span></a>
+ </nav>
+ <div class="sidebar-bottom">
+  <a class="resume-link" href="Siddh_Mehta_Resume.pdf" target="_blank" rel="noopener">One-page résumé <span>↗</span></a>
+  <div class="socials"><a href="https://github.com/siddhm11" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/siddhm11" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+  <div class="preferences" data-enhanced hidden><label for="theme-select">Appearance</label><select id="theme-select"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select><button type="button" id="motion-toggle" aria-pressed="false">Motion on</button></div>
+ </div>
+</aside>
+<main id="main">
+<section class="chapter hello" id="hello" aria-labelledby="hello-title">
+ <div class="section-top"><span class="eyebrow">ENGINEERING / SELECTED WORK</span><a href="mailto:mehtasiddh011@gmail.com">Say hello ↗</a></div>
+ <p class="greeting">Hi, I’m Siddh.</p>
+ <h1 id="hello-title">I build search systems<br>and <em>useful AI tools.</em></h1>
+ <p class="hero-description">I’m an AI/ML engineer at Airbus. Outside work, I independently build <a href="#researchit">ResearchIT</a> and co-build <a href="#prompt-memory">Prompt Memory</a>.</p>
+ <p class="hero-note">My projects start with something I want to use: a paper feed that understands different interests, or an AI tool that keeps the original request intact.</p>
+ <div class="hero-actions"><a class="button primary" href="#work">Explore my work <span>↓</span></a><a class="button secondary" href="Siddh_Mehta_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a></div>
+ <div class="intro-strip"><span>01 / Search & recommendations</span><span>02 / AI tools & evaluation</span><span>03 / Production ML & data</span></div>
+</section>
+<section class="chapter work" id="work" aria-labelledby="work-title">
+ <div class="section-heading"><p class="eyebrow">02 / SELECTED WORK</p><h2 id="work-title">Built to be used.</h2><p>Two products, the problems behind them, and the decisions I made along the way.</p></div>
+ <nav class="work-index" aria-label="Jump to a project"><a href="#researchit">01 ResearchIT ↓</a><a href="#prompt-memory">02 Prompt Memory ↓</a><a href="#researchit-space">03 An experiment ↓</a></nav>
+ <article class="project" id="researchit" aria-labelledby="researchit-title">
+  <header class="project-header"><p class="eyebrow">01 / INDEPENDENT PROJECT · 2025—NOW</p><h3 id="researchit-title">ResearchIT</h3><p class="project-pitch">A paper feed for more than one interest.</p></header>
+  <div class="project-grid">
+   <div class="project-story"><p>I wanted recommendations that could make room for both language models and robotics. ResearchIT combines paper search with a reading feed shaped by the papers you save.</p><p class="ownership"><strong>My part</strong> Solo design, data pipeline, search, recommendations, deployment, and evaluation.</p><dl class="project-facts"><div><dt>1.85M</dt><dd>papers indexed¹</dd></div><div><dt>877 → 288 ms</dt><dd>median lexical-search time²</dd></div></dl><p class="decision"><strong>A decision that mattered</strong> A balanced candidate pool could still produce a one-sided feed. I changed the final ordering to preserve room for each interest.</p><div class="project-actions"><a class="button primary" href="https://siddhm11-researchit.hf.space" target="_blank" rel="noopener">Try ResearchIT ↗</a><a class="text-link" href="#research-detail">How I built it ↓</a><a class="text-link" href="https://github.com/siddhm11/ResearchIT-priv" target="_blank" rel="noopener">Code ↗</a></div></div>
+   <figure class="product-capture"><div class="capture-bar"><span>RESEARCHIT / THE PRODUCT</span><a href="assets/rit-search-results.webp" id="research-full-image" target="_blank" rel="noopener" data-enlarge="research-shot">Enlarge ↗</a></div><picture><source srcset="assets/rit-search-results.webp" type="image/webp"><img id="research-shot" src="assets/rit-search-results.jpg" width="944" height="829" alt="ResearchIT: a plain-English research question and relevant paper results" loading="lazy"></picture><div class="shot-choices" data-enhanced hidden role="group" aria-label="ResearchIT screenshots"><button type="button" aria-pressed="true" data-shot="search">Search</button><button type="button" aria-pressed="false" data-shot="feed">Reading feed</button><button type="button" aria-pressed="false" data-shot="why">Why this paper?</button></div><figcaption id="research-shot-caption">Search the research corpus in plain English.</figcaption></figure>
+  </div>
+  <p class="source-note">¹ Corpus recorded 24 October 2026. <a href="https://siddhm11-researchit.hf.space/healthz/deep" target="_blank" rel="noopener">Corpus source ↗</a> &nbsp; ² Dated lexical-search evaluation, not end-to-end live latency. <a href="https://github.com/siddhm11/ResearchIT-priv/blob/9888b1eebee80b8b8e1686767e97b61bc3e144f3/docs/research/06-Deep-Research-Verdict.md#2026-10-16--word-match-ranks-inside-fts-before-reading-papers-feed-policy-v11" target="_blank" rel="noopener">Measurement ↗</a></p>
+  <section class="feed-demo" data-enhanced hidden aria-labelledby="feed-title"><div><p class="eyebrow">ONE DESIGN PROBLEM, IN TEN CARDS</p><h4 id="feed-title">What happens to your other interest?</h4><p>Suppose you read about AI and robotics. A feed can look relevant while quietly dropping one of them.</p><p class="demo-note">A simplified illustration. This is not a live recommendation or a benchmark.</p></div><div class="interest-demo"><div class="interest-switch" role="group" aria-label="Illustrative feed behavior"><button type="button" aria-pressed="false" data-feed="single">One interest wins</button><button type="button" aria-pressed="true" data-feed="balanced">Room for both</button></div><ol class="paper-cards" aria-label="Illustrative reading feed"><li data-topic="ai"><span>01</span><b>AI</b></li>
+<li data-topic="robotics"><span>02</span><b>Robotics</b></li>
+<li data-topic="ai"><span>03</span><b>AI</b></li>
+<li data-topic="robotics"><span>04</span><b>Robotics</b></li>
+<li data-topic="ai"><span>05</span><b>AI</b></li>
+<li data-topic="robotics"><span>06</span><b>Robotics</b></li>
+<li data-topic="ai"><span>07</span><b>AI</b></li>
+<li data-topic="robotics"><span>08</span><b>Robotics</b></li>
+<li data-topic="ai"><span>09</span><b>AI</b></li>
+<li data-topic="robotics"><span>10</span><b>Robotics</b></li></ol><p id="feed-explanation" role="status">5 AI papers. 5 robotics papers. Both interests get a place.</p></div></section>
+  <details class="project-details" id="research-detail"><summary>Inside ResearchIT <span>Problem, decisions & engineering</span></summary><div class="detail-body"><h4 id="research-detail-title">A feed for a person<br>with more than one interest.</h4><p class="dialog-intro">Designed, built, deployed, and evaluated independently.</p><div class="detail-columns"><div><h5>Why I built it</h5><p>Save papers about language models and robotics, and a single averaged profile can lose what made each interest distinct. I wanted recommendations that made room for both.</p></div><div><h5>What I learned</h5><p>Balancing the candidate pool isn’t enough. The final ordering matters too. Interest quotas and diversity within each interest help keep one topic from taking over.</p></div></div><div class="detail-example"><span class="eyebrow">TRY THIS ON THE REAL APP</span><p>“How should I evaluate a retrieval-augmented generation system?”</p><a href="https://siddhm11-researchit.hf.space/search?q=how%20should%20I%20evaluate%20a%20retrieval-augmented%20generation%20system" class="plain-link" target="_blank" rel="noopener">Run this example ↗</a></div><details class="technical-detail"><summary>The engineering, if you’re curious <span>+</span></summary><p>BGE-M3 retrieves semantic neighbors from Qdrant. SQLite FTS5 adds lexical matches. Reciprocal rank fusion brings the lists together, and a cross-encoder reranks a small candidate set.</p><p>The discovery feed uses saved-paper interests, quota allocation, and diversity within each interest. The default feed scorer is heuristic; the optional learned model is a separate experiment.</p><div class="evidence-row"><strong>877 → 288 ms</strong><span>Median lexical-search time in a dated evaluation.</span><a href="https://github.com/siddhm11/ResearchIT-priv/blob/9888b1eebee80b8b8e1686767e97b61bc3e144f3/docs/research/06-Deep-Research-Verdict.md#2026-10-16--word-match-ranks-inside-fts-before-reading-papers-feed-policy-v11" target="_blank" rel="noopener">Read the measurement ↗</a></div><p class="small-copy">Measurements describe specific evaluation conditions; they aren’t promises about every live query.</p></details><div class="dialog-actions"><a class="button dark" href="https://siddhm11-researchit.hf.space" target="_blank" rel="noopener">Explore ResearchIT ↗</a><a class="plain-link" href="https://github.com/siddhm11/ResearchIT-priv/blob/main/docs/CURRENT-STATE.md" target="_blank" rel="noopener">Architecture & limitations ↗</a></div></div></details>
+ </article>
+ <article class="project" id="prompt-memory" aria-labelledby="memory-title">
+  <header class="project-header"><p class="eyebrow">02 / CO-BUILT · 2026</p><h3 id="memory-title">Prompt Memory</h3><p class="project-pitch">A clearer prompt that still means what you meant.</p></header>
+  <div class="project-grid">
+   <div class="project-story"><p>A browser extension that turns a rough request into a reviewable rewrite, using context from the conversation. You choose what to apply and what it remembers.</p><p class="ownership"><strong>My part</strong> The in-chat experience, approval-gated memory, rewrite policy, and evaluation.</p><dl class="project-facts"><div><dt>82 cases</dt><dd>in the evaluation corpus</dd></div><div><dt>21 categories</dt><dd>of failure being checked</dd></div></dl><p class="decision"><strong>A decision that mattered</strong> A polished rewrite can still invent a deadline or lose a constraint. I built evaluation cases around preserving the original request.</p><div class="project-actions"><a class="button primary" href="#memory-detail">See an example ↓</a><a class="text-link" href="https://github.com/siddhm11/prompt_engineering_skeleton" target="_blank" rel="noopener">Source & setup ↗</a></div></div>
+   <figure class="product-capture memory-capture"><div class="capture-bar"><span>PROMPT MEMORY / CHROME EXTENSION</span><a href="assets/pm-rewrite.webp" target="_blank" rel="noopener" data-enlarge="memory-shot">Enlarge ↗</a></div><img id="memory-shot" src="assets/pm-rewrite.webp" width="1060" height="660" alt="Prompt Memory interface showing a rough Python question and a reviewable rewrite" loading="lazy"><figcaption>A recorded product example. Review the rewrite before applying it.</figcaption></figure>
+  </div>
+  <details class="project-details" id="memory-detail"><summary>Inside Prompt Memory <span>Recorded example, contribution & evaluation</span></summary><div class="detail-body"><h4 id="memory-detail-title">A better prompt should<br>still sound like your request.</h4><p class="dialog-intro">Co-built with a collaborator. My focus: the in-chat experience, approval-gated memory, rewrite policy, and evaluation.</p><div class="detail-columns"><div><h5>The problem</h5><p>A prompt can look polished and still change what you meant. Invented deadlines, extra requirements, or lost constraints are real failures.</p></div><div><h5>The decision</h5><p>Show the rewrite before applying it. Keep the user in control. Write passive memory only after an approved rewrite is applied.</p></div></div><div class="detail-example prompt-example"><span class="eyebrow">AN EXAMPLE FROM THE PRODUCT SCREENSHOT</span><div><span class="example-label">THE ROUGH THOUGHT</span><p>“hw do i sort a list of dicts by a key in python, some dont have the key”</p></div><details class="rewrite-example"><summary>Compare the recorded rewrite</summary><div id="rewrite-example"><span class="example-label">THE REVIEWABLE REWRITE</span><p>“Show me how to sort a list of dictionaries in Python by a specific key, handling cases where some dictionaries might not have that key. Provide a robust solution that avoids KeyError, explain the choice between a default value and filtering, and include a short code example.”</p><small>A recorded example, not a live model call.</small></div></details></div><details class="technical-detail"><summary>A little more on my contribution <span>+</span></summary><p>I built most of the in-chat extension, including the rewrite card, context library, and voice review, alongside the approval-gated memory and rewrite evaluation work. My co-builder started the project and led the landing page, analytics dashboard, sign-in, and release work.</p><p>The 82-case corpus spans 21 failure categories, including numerical fidelity, negative constraints, language preservation, and context injection. A larger held-out evaluation remains a useful next step.</p><a class="plain-link" href="https://github.com/siddhm11/prompt_engineering_skeleton/blob/main/evals/README.md" target="_blank" rel="noopener">Explore the evaluation corpus ↗</a></details><div class="dialog-actions"><a class="button dark" href="https://github.com/siddhm11/prompt_engineering_skeleton" target="_blank" rel="noopener">Source & installation ↗</a></div></div></details>
+ </article>
+ <aside class="experiment" id="researchit-space" aria-labelledby="space-title"><a class="experiment-image" href="https://researchit-space.vercel.app/" target="_blank" rel="noopener"><img src="assets/space-map.webp" width="1456" height="829" alt="ResearchIT Space: papers arranged in a navigable three-dimensional map" loading="lazy"></a><div><p class="eyebrow">03 / AN EXPERIMENT</p><h3 id="space-title">ResearchIT Space</h3><p>A 3D companion for exploring neighboring papers. An experiment in what research discovery can feel like beyond a list.</p><a class="text-link" href="https://researchit-space.vercel.app/" target="_blank" rel="noopener">Explore the map ↗</a></div></aside>
+ <a class="more-work" href="https://github.com/siddhm11?tab=repositories" target="_blank" rel="noopener">More experiments and source code <span>GitHub ↗</span></a>
+</section>
+<section class="chapter journey" id="journey" aria-labelledby="journey-title">
+ <div class="section-heading"><p class="eyebrow">03 / EXPERIENCE</p><h2 id="journey-title">The work behind the work.</h2><p>Production data, retrieval systems, and models built with teams.</p></div>
+ <ol class="timeline"><li>
+ <div class="timeline-date">Feb 2026 — now<span>Bengaluru</span></div>
+ <div><h3>Airbus India</h3>
+ <p class="role">ML / Data Engineer</p><span class="role-note">Intern Feb–Aug 2026; full-time since Aug 2026</span>
+ <p>PySpark ingestion and reconciliation across 43M+ rows in Palantir Foundry, with lineage, health checks and validation gates. Delay and repair-time models with scheduled retraining, and forecasting for financial provisioning.</p>
+ <ul class="tags" aria-label="Tools"><li>PySpark</li><li>Palantir Foundry</li><li>LightGBM</li></ul></div>
+</li>
+<li>
+ <div class="timeline-date">Dec 2025 — Sep 2026<span>Remote</span></div>
+ <div><h3>Samsung R&amp;D Institute India</h3>
+ <p class="role">PRISM research program</p>
+ <p>Designed a two-stage document-image classifier across eight layout-aware classes for constrained on-device inference, comparing CNN and transformer models on accuracy, latency and size.</p>
+ <ul class="tags" aria-label="Tools"><li>On-device CV</li><li>Benchmarking</li></ul></div>
+</li>
+<li>
+ <div class="timeline-date">May — Jul 2025<span>Mumbai</span></div>
+ <div><h3>Fynd</h3>
+ <p class="role">AI/ML Engineering Intern</p>
+ <p>A modular LangGraph multi-agent framework that cut pipeline setup time 40% and inference latency 60%; hybrid dense–sparse RAG with BGE-M3; LoRA/QLoRA fine-tuning; REST inference behind A/B evaluation harnesses.</p>
+ <ul class="tags" aria-label="Tools"><li>LangGraph</li><li>RAG</li><li>LoRA</li></ul></div>
+</li>
+<li>
+ <div class="timeline-date">Jun 2024 — Apr 2025<span>Hyderabad / Remote</span></div>
+ <div><h3>Acheron Software</h3>
+ <p class="role">Software Engineering Intern · earlier Data Science Intern</p><span class="role-note">Software engineering intern Oct 2024 – Apr 2025; data science intern Jun – Aug 2024</span>
+ <p>An internal LangChain Text-to-SQL service at 89% query accuracy, a YOLOv8 asset-tagging pipeline with embedding similarity search at 92% accuracy, and automated anomaly-detection workflows.</p>
+ <ul class="tags" aria-label="Tools"><li>Text-to-SQL</li><li>YOLOv8</li></ul></div>
+</li></ol>
+ <div class="education-line"><p><strong>Vellore Institute of Technology</strong><br>B.Tech, CSE (Data Science) · May 2026 · CGPA 9.07 / 10</p><a class="text-link" href="Siddh_Mehta_Resume.pdf" target="_blank" rel="noopener">Full résumé ↗</a></div>
+</section>
+<section class="chapter offscreen" id="offscreen" aria-labelledby="offscreen-title">
+ <div class="section-heading"><p class="eyebrow">04 / OFFSCREEN</p><h2 id="offscreen-title">There’s cricket, too.</h2></div>
+ <div class="offscreen-grid"><figure class="field-photo"><img src="assets/cricket.webp" width="1600" height="1067" alt="Siddh raising his bat on the cricket field, wearing an Oman jersey" loading="lazy"><figcaption>A part of my life you won’t find on GitHub.</figcaption></figure><div class="offscreen-copy"><p>Away from the screen, there’s cricket. It’s a part of my life that a list of projects and job titles doesn’t capture.</p><p>On the building side, I keep returning to research discovery: how to find something worth reading, and how to follow an interest without losing the others.</p><div class="currently"><span class="eyebrow">ON MY WORKBENCH</span><a href="#researchit">ResearchIT <span>Search & multi-interest recommendations ↗</span></a><a href="#prompt-memory">Prompt Memory <span>Rewrites that preserve the request ↗</span></a></div></div></div>
+</section>
+<section class="chapter contact" id="contact" aria-labelledby="contact-title">
+ <p class="eyebrow">05 / CONTACT</p><h2 id="contact-title">Let’s build something useful.</h2><p>I’m interested in AI/ML engineering roles involving search, recommendations, and AI products. Based in Bengaluru.</p><a class="email-link" href="mailto:mehtasiddh011@gmail.com">mehtasiddh011@gmail.com <span>↗</span></a><div class="contact-bottom"><button type="button" class="copy-button" data-copy="mehtasiddh011@gmail.com" data-enhanced hidden>Copy email</button><a href="https://www.linkedin.com/in/siddhm11" target="_blank" rel="noopener">LinkedIn ↗</a><a href="Siddh_Mehta_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a><span class="copy-status" role="status" aria-live="polite"></span></div>
+</section>
+<footer><span>© 2026 Siddh Mehta</span><a href="#hello">Back to the top ↑</a></footer>
+</main>
+</div>
+<div class="chapter-control" data-enhanced hidden aria-label="Chapter navigation"><span id="chapter-readout">01 / About</span><a id="previous-chapter" href="#hello" aria-label="Back to about">↑</a><a id="next-chapter" href="#work" aria-label="Next chapter: selected work">↓</a></div>
+<dialog id="image-dialog" aria-label="Enlarged product screenshot"><div class="image-dialog-top"><p id="image-caption"></p><button class="dialog-close" type="button" aria-label="Close screenshot">Close ✕</button></div><img id="enlarged-image" alt=""></dialog>
 </body>
 </html>
